@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Data: MB ke GB dan GB ke MB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Konversi Data: MB & GB</h1>
+        <label for="conversionType">Pilih jenis konversi:</label>
+        <select id="conversionType">
+            <option value="mbToGb">MB ke GB</option>
+            <option value="gbToMb">GB ke MB</option>
+        </select>
+        
+        <label for="inputValue">Masukkan jumlah data:</label>
+        <input type="number" id="inputValue" placeholder="Masukkan angka..." required>
+        
+        <button onclick="convert()">Konversi</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            const conversionType = document.getElementById('conversionType').value;
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            let result;
+
+            if (isNaN(inputValue)) {
+                document.getElementById('result').innerHTML = 'Masukkan angka yang valid.';
+                return;
+            }
+
+            if (conversionType === 'mbToGb') {
+                // Mengonversi MB ke GB
+                result = inputValue / 1024;
+                document.getElementById('result').innerHTML = `${inputValue} MB = ${result.toFixed(4)} GB`;
+            } else if (conversionType === 'gbToMb') {
+                // Mengonversi GB ke MB
+                result = inputValue * 1024;
+                document.getElementById('result').innerHTML = `${inputValue} GB = ${result.toFixed(2)} MB`;
+            }
+        }
+    </script>
+
+</body>
+</html>
